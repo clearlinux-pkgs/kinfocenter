@@ -6,7 +6,7 @@
 #
 Name     : kinfocenter
 Version  : 5.13.5
-Release  : 3
+Release  : 4
 URL      : https://download.kde.org/stable/plasma/5.13.5/kinfocenter-5.13.5.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.13.5/kinfocenter-5.13.5.tar.xz
 Source99 : https://download.kde.org/stable/plasma/5.13.5/kinfocenter-5.13.5.tar.xz.sig
@@ -20,6 +20,10 @@ Requires: kinfocenter-license
 Requires: kinfocenter-locales
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : kcrash-dev
+BuildRequires : kdbusaddons-dev
+BuildRequires : kdeclarative-dev
+BuildRequires : kpackage-dev
 BuildRequires : kwayland-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : mesa-dev
@@ -91,7 +95,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536087267
+export SOURCE_DATE_EPOCH=1536450916
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -99,7 +103,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1536087267
+export SOURCE_DATE_EPOCH=1536450916
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kinfocenter
 cp COPYING %{buildroot}/usr/share/doc/kinfocenter/COPYING
@@ -122,6 +126,9 @@ popd
 %find_lang kcmdevinfo
 %find_lang kcmnic
 %find_lang kcmopengl
+## install_append content
+mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -163,6 +170,7 @@ popd
 /usr/share/kservices5/xserver.desktop
 /usr/share/kservicetypes5/kinfocentercategory.desktop
 /usr/share/kxmlgui5/kinfocenter/kinfocenterui.rc
+/usr/share/xdg/kinfocenter.menu
 
 %files doc
 %defattr(0644,root,root,0755)
