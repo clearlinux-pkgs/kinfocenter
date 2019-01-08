@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.14.4
-Release  : 9
-URL      : https://download.kde.org/stable/plasma/5.14.4/kinfocenter-5.14.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.14.4/kinfocenter-5.14.4.tar.xz
-Source99 : https://download.kde.org/stable/plasma/5.14.4/kinfocenter-5.14.4.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 5.14.5
+Release  : 10
+URL      : https://download.kde.org/stable/plasma/5.14.5/kinfocenter-5.14.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.14.5/kinfocenter-5.14.5.tar.xz
+Source99 : https://download.kde.org/stable/plasma/5.14.5/kinfocenter-5.14.5.tar.xz.sig
+Summary  : A utility that provides information about a computer system
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1
 Requires: kinfocenter-bin = %{version}-%{release}
@@ -28,9 +28,9 @@ BuildRequires : pciutils-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-See example/*.
-Essentially you place an rc file in the file system that defines the distro logo
-and website url. The file ought to be in some XDG_CONFIG_DIRS dir.
+this kcontrol module shows the current configuration of the IEEE 1394 bus.
+It uses libraw1394 (see www.linux1394.org). I don't know how the 1394 apis
+on other OS's look, feel free to port it :-)
 
 %package bin
 Summary: bin components for the kinfocenter package.
@@ -85,22 +85,22 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.14.4
+%setup -q -n kinfocenter-5.14.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543393064
+export SOURCE_DATE_EPOCH=1546964803
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1543393064
+export SOURCE_DATE_EPOCH=1546964803
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/COPYING
