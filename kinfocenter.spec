@@ -6,7 +6,7 @@
 #
 Name     : kinfocenter
 Version  : 5.14.5
-Release  : 10
+Release  : 11
 URL      : https://download.kde.org/stable/plasma/5.14.5/kinfocenter-5.14.5.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.14.5/kinfocenter-5.14.5.tar.xz
 Source99 : https://download.kde.org/stable/plasma/5.14.5/kinfocenter-5.14.5.tar.xz.sig
