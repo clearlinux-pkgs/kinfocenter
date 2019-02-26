@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.15.1
-Release  : 13
-URL      : https://download.kde.org/stable/plasma/5.15.1/kinfocenter-5.15.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.15.1/kinfocenter-5.15.1.tar.xz
-Source99 : https://download.kde.org/stable/plasma/5.15.1/kinfocenter-5.15.1.tar.xz.sig
+Version  : 5.15.2
+Release  : 14
+URL      : https://download.kde.org/stable/plasma/5.15.2/kinfocenter-5.15.2.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.15.2/kinfocenter-5.15.2.tar.xz
+Source99 : https://download.kde.org/stable/plasma/5.15.2/kinfocenter-5.15.2.tar.xz.sig
 Summary  : A utility that provides information about a computer system
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1
@@ -84,14 +84,14 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.15.1
+%setup -q -n kinfocenter-5.15.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550590855
+export SOURCE_DATE_EPOCH=1551196707
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -99,7 +99,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1550590855
+export SOURCE_DATE_EPOCH=1551196707
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/COPYING
