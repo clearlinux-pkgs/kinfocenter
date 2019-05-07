@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.15.4
-Release  : 19
-URL      : https://download.kde.org/stable/plasma/5.15.4/kinfocenter-5.15.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.15.4/kinfocenter-5.15.4.tar.xz
-Source99 : https://download.kde.org/stable/plasma/5.15.4/kinfocenter-5.15.4.tar.xz.sig
+Version  : 5.15.5
+Release  : 20
+URL      : https://download.kde.org/stable/plasma/5.15.5/kinfocenter-5.15.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.15.5/kinfocenter-5.15.5.tar.xz
+Source99 : https://download.kde.org/stable/plasma/5.15.5/kinfocenter-5.15.5.tar.xz.sig
 Summary  : A utility that provides information about a computer system
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1
@@ -21,10 +21,6 @@ Requires: kinfocenter-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(egl)
-BuildRequires : kcrash-dev
-BuildRequires : kdbusaddons-dev
-BuildRequires : kdeclarative-dev
-BuildRequires : kpackage-dev
 BuildRequires : kwayland-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : mesa-dev
@@ -89,14 +85,14 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.15.4
+%setup -q -n kinfocenter-5.15.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557017922
+export SOURCE_DATE_EPOCH=1557240957
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -111,7 +107,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557017922
+export SOURCE_DATE_EPOCH=1557240957
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/COPYING
