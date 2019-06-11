@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.15.5
-Release  : 20
-URL      : https://download.kde.org/stable/plasma/5.15.5/kinfocenter-5.15.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.15.5/kinfocenter-5.15.5.tar.xz
-Source99 : https://download.kde.org/stable/plasma/5.15.5/kinfocenter-5.15.5.tar.xz.sig
+Version  : 5.16.0
+Release  : 21
+URL      : https://download.kde.org/stable/plasma/5.16.0/kinfocenter-5.16.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.16.0/kinfocenter-5.16.0.tar.xz
+Source99 : https://download.kde.org/stable/plasma/5.16.0/kinfocenter-5.16.0.tar.xz.sig
 Summary  : A utility that provides information about a computer system
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1
@@ -85,14 +85,14 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.15.5
+%setup -q -n kinfocenter-5.16.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557240957
+export SOURCE_DATE_EPOCH=1560267888
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -107,7 +107,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557240957
+export SOURCE_DATE_EPOCH=1560267888
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/COPYING
@@ -174,6 +174,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/kservices5/xserver.desktop
 /usr/share/kservicetypes5/kinfocentercategory.desktop
 /usr/share/kxmlgui5/kinfocenter/kinfocenterui.rc
+/usr/share/metainfo/org.kde.kinfocenter.appdata.xml
 /usr/share/xdg/kinfocenter.menu
 
 %files doc
