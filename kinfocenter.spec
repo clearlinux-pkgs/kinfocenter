@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.16.5
-Release  : 26
-URL      : https://download.kde.org/stable/plasma/5.16.5/kinfocenter-5.16.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.16.5/kinfocenter-5.16.5.tar.xz
-Source1 : https://download.kde.org/stable/plasma/5.16.5/kinfocenter-5.16.5.tar.xz.sig
+Version  : 5.17.0
+Release  : 27
+URL      : https://download.kde.org/stable/plasma/5.17.0/kinfocenter-5.17.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.17.0/kinfocenter-5.17.0.tar.xz
+Source1 : https://download.kde.org/stable/plasma/5.17.0/kinfocenter-5.17.0.tar.xz.sig
 Summary  : A utility that provides information about a computer system
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1
@@ -85,14 +85,14 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.16.5
+%setup -q -n kinfocenter-5.17.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567641841
+export SOURCE_DATE_EPOCH=1571154139
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -105,17 +105,17 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1567641841
+export SOURCE_DATE_EPOCH=1571154139
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
-cp COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/package-licenses/kinfocenter/COPYING.DOC
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kinfocenter/COPYING.LIB
-cp Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/Modules_about-distro_COPYING
+cp %{_builddir}/kinfocenter-5.17.0/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/kinfocenter-5.17.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/kinfocenter/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/kinfocenter-5.17.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kinfocenter/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/kinfocenter-5.17.0/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 pushd clr-build
 %make_install
 popd
@@ -189,6 +189,8 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/doc/HTML/en/kinfocenter/index.cache.bz2
 /usr/share/doc/HTML/en/kinfocenter/index.docbook
 /usr/share/doc/HTML/en/kinfocenter/kinfocenter.png
+/usr/share/doc/HTML/id/kinfocenter/index.cache.bz2
+/usr/share/doc/HTML/id/kinfocenter/index.docbook
 /usr/share/doc/HTML/it/kinfocenter/index.cache.bz2
 /usr/share/doc/HTML/it/kinfocenter/index.docbook
 /usr/share/doc/HTML/nl/kinfocenter/index.cache.bz2
@@ -225,10 +227,10 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kinfocenter/COPYING
-/usr/share/package-licenses/kinfocenter/COPYING.DOC
-/usr/share/package-licenses/kinfocenter/COPYING.LIB
-/usr/share/package-licenses/kinfocenter/Modules_about-distro_COPYING
+/usr/share/package-licenses/kinfocenter/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/kinfocenter/7c203dee3a03037da436df03c4b25b659c073976
+/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
+/usr/share/package-licenses/kinfocenter/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 
 %files locales -f kcminfo.lang -f kcmsamba.lang -f kcmusb.lang -f kcmview1394.lang -f kinfocenter.lang -f kcm-about-distro.lang -f kcm_energyinfo.lang -f kcm_fileindexermonitor.lang -f kcm_memory.lang -f kcm_pci.lang -f kcmdevinfo.lang -f kcmnic.lang -f kcmopengl.lang
 %defattr(-,root,root,-)
