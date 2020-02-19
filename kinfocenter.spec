@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.18.0
-Release  : 33
-URL      : https://download.kde.org/stable/plasma/5.18.0/kinfocenter-5.18.0.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.18.0/kinfocenter-5.18.0.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.18.0/kinfocenter-5.18.0.tar.xz.sig
+Version  : 5.18.1
+Release  : 34
+URL      : https://download.kde.org/stable/plasma/5.18.1/kinfocenter-5.18.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.18.1/kinfocenter-5.18.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.18.1/kinfocenter-5.18.1.tar.xz.sig
 Summary  : A utility that provides information about a computer system
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1
+License  : GPL-3.0
 Requires: kinfocenter-bin = %{version}-%{release}
 Requires: kinfocenter-data = %{version}-%{release}
 Requires: kinfocenter-lib = %{version}-%{release}
@@ -85,15 +85,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.18.0
-cd %{_builddir}/kinfocenter-5.18.0
+%setup -q -n kinfocenter-5.18.1
+cd %{_builddir}/kinfocenter-5.18.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581441441
+export SOURCE_DATE_EPOCH=1582078546
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -110,13 +110,10 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1581441441
+export SOURCE_DATE_EPOCH=1582078546
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
-cp %{_builddir}/kinfocenter-5.18.0/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kinfocenter-5.18.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/kinfocenter/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/kinfocenter-5.18.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kinfocenter/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/kinfocenter-5.18.0/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
+cp %{_builddir}/kinfocenter-5.18.1/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 pushd clr-build
 %make_install
 popd
@@ -228,10 +225,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kinfocenter/01a6b4bf79aca9b556822601186afab86e8c4fbf
-/usr/share/package-licenses/kinfocenter/7c203dee3a03037da436df03c4b25b659c073976
 /usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
-/usr/share/package-licenses/kinfocenter/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 
 %files locales -f kcminfo.lang -f kcmsamba.lang -f kcmusb.lang -f kcmview1394.lang -f kinfocenter.lang -f kcm-about-distro.lang -f kcm_energyinfo.lang -f kcm_fileindexermonitor.lang -f kcm_memory.lang -f kcm_pci.lang -f kcmdevinfo.lang -f kcmnic.lang -f kcmopengl.lang
 %defattr(-,root,root,-)
