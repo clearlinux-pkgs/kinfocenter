@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.18.1
-Release  : 34
-URL      : https://download.kde.org/stable/plasma/5.18.1/kinfocenter-5.18.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.18.1/kinfocenter-5.18.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.18.1/kinfocenter-5.18.1.tar.xz.sig
+Version  : 5.18.2
+Release  : 35
+URL      : https://download.kde.org/stable/plasma/5.18.2/kinfocenter-5.18.2.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.18.2/kinfocenter-5.18.2.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.18.2/kinfocenter-5.18.2.tar.xz.sig
 Summary  : A utility that provides information about a computer system
 Group    : Development/Tools
 License  : GPL-3.0
@@ -85,15 +85,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.18.1
-cd %{_builddir}/kinfocenter-5.18.1
+%setup -q -n kinfocenter-5.18.2
+cd %{_builddir}/kinfocenter-5.18.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582078546
+export SOURCE_DATE_EPOCH=1582678520
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -110,10 +110,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1582078546
+export SOURCE_DATE_EPOCH=1582678520
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
-cp %{_builddir}/kinfocenter-5.18.1/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
+cp %{_builddir}/kinfocenter-5.18.2/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kinfocenter-5.18.2/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 pushd clr-build
 %make_install
 popd
@@ -225,6 +226,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 
 %files license
 %defattr(0644,root,root,0755)
+/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
 /usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 
 %files locales -f kcminfo.lang -f kcmsamba.lang -f kcmusb.lang -f kcmview1394.lang -f kinfocenter.lang -f kcm-about-distro.lang -f kcm_energyinfo.lang -f kcm_fileindexermonitor.lang -f kcm_memory.lang -f kcm_pci.lang -f kcmdevinfo.lang -f kcmnic.lang -f kcmopengl.lang
