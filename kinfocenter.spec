@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.18.4.1
-Release  : 37
-URL      : https://download.kde.org/stable/plasma/5.18.4/kinfocenter-5.18.4.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.18.4/kinfocenter-5.18.4.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.18.4/kinfocenter-5.18.4.1.tar.xz.sig
-Summary  : A utility that provides information about a computer system
+Version  : 5.18.5
+Release  : 38
+URL      : https://download.kde.org/stable/plasma/5.18.5/kinfocenter-5.18.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.18.5/kinfocenter-5.18.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.18.5/kinfocenter-5.18.5.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
 Requires: kinfocenter-bin = %{version}-%{release}
@@ -21,10 +21,14 @@ Requires: kinfocenter-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(egl)
+BuildRequires : extra-cmake-modules-data
+BuildRequires : kdoctools-dev
+BuildRequires : ki18n-dev
 BuildRequires : kwayland-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : mesa-dev
 BuildRequires : pciutils-dev
+BuildRequires : qtbase-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
@@ -85,36 +89,35 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.18.4.1
-cd %{_builddir}/kinfocenter-5.18.4.1
+%setup -q -n kinfocenter-5.18.5
+cd %{_builddir}/kinfocenter-5.18.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1585676905
+export SOURCE_DATE_EPOCH=1588700818
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1585676905
+export SOURCE_DATE_EPOCH=1588700818
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
-cp %{_builddir}/kinfocenter-5.18.4.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kinfocenter-5.18.4.1/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
+cp %{_builddir}/kinfocenter-5.18.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kinfocenter-5.18.5/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 pushd clr-build
 %make_install
 popd
