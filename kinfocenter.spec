@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.18.5
-Release  : 38
-URL      : https://download.kde.org/stable/plasma/5.18.5/kinfocenter-5.18.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.18.5/kinfocenter-5.18.5.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.18.5/kinfocenter-5.18.5.tar.xz.sig
+Version  : 5.19.0
+Release  : 39
+URL      : https://download.kde.org/stable/plasma/5.19.0/kinfocenter-5.19.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.19.0/kinfocenter-5.19.0.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.19.0/kinfocenter-5.19.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
@@ -89,15 +89,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.18.5
-cd %{_builddir}/kinfocenter-5.18.5
+%setup -q -n kinfocenter-5.19.0
+cd %{_builddir}/kinfocenter-5.19.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1588700818
+export SOURCE_DATE_EPOCH=1591733619
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -113,11 +113,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1588700818
+export SOURCE_DATE_EPOCH=1591733619
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
-cp %{_builddir}/kinfocenter-5.18.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kinfocenter-5.18.5/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
+cp %{_builddir}/kinfocenter-5.19.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kinfocenter-5.19.0/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 pushd clr-build
 %make_install
 popd
@@ -159,6 +159,8 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/kpackage/kcms/kcm_fileindexermonitor/metadata.desktop
 /usr/share/kpackage/kcms/kcm_fileindexermonitor/metadata.json
 /usr/share/kservices5/about-distro.desktop
+/usr/share/kservices5/basicinformation.desktop
+/usr/share/kservices5/detailedinformation.desktop
 /usr/share/kservices5/deviceinfocategory.desktop
 /usr/share/kservices5/devinfo.desktop
 /usr/share/kservices5/dma.desktop
@@ -177,7 +179,6 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/kservices5/wayland.desktop
 /usr/share/kservices5/xserver.desktop
 /usr/share/kservicetypes5/kinfocentercategory.desktop
-/usr/share/kxmlgui5/kinfocenter/kinfocenterui.rc
 /usr/share/metainfo/org.kde.kinfocenter.appdata.xml
 /usr/share/xdg/kinfocenter.menu
 
@@ -195,6 +196,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/doc/HTML/id/kinfocenter/index.docbook
 /usr/share/doc/HTML/it/kinfocenter/index.cache.bz2
 /usr/share/doc/HTML/it/kinfocenter/index.docbook
+/usr/share/doc/HTML/it/kinfocenter/kinfocenter.png
 /usr/share/doc/HTML/nl/kinfocenter/index.cache.bz2
 /usr/share/doc/HTML/nl/kinfocenter/index.docbook
 /usr/share/doc/HTML/pt/kinfocenter/index.cache.bz2
