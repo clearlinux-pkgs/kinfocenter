@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.19.0
-Release  : 39
-URL      : https://download.kde.org/stable/plasma/5.19.0/kinfocenter-5.19.0.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.19.0/kinfocenter-5.19.0.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.19.0/kinfocenter-5.19.0.tar.xz.sig
+Version  : 5.19.1
+Release  : 40
+URL      : https://download.kde.org/stable/plasma/5.19.1/kinfocenter-5.19.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.19.1/kinfocenter-5.19.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.19.1/kinfocenter-5.19.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
@@ -32,9 +32,9 @@ BuildRequires : qtbase-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-this kcontrol module shows the current configuration of the IEEE 1394 bus.
-It uses libraw1394 (see www.linux1394.org). I don't know how the 1394 apis
-on other OS's look, feel free to port it :-)
+See example/*.
+Essentially you place an rc file in the file system that defines the distro logo
+and website url. The file ought to be in some XDG_CONFIG_DIRS dir.
 
 %package bin
 Summary: bin components for the kinfocenter package.
@@ -89,15 +89,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.19.0
-cd %{_builddir}/kinfocenter-5.19.0
+%setup -q -n kinfocenter-5.19.1
+cd %{_builddir}/kinfocenter-5.19.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591733619
+export SOURCE_DATE_EPOCH=1592336171
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -113,11 +113,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591733619
+export SOURCE_DATE_EPOCH=1592336171
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
-cp %{_builddir}/kinfocenter-5.19.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kinfocenter-5.19.0/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
+cp %{_builddir}/kinfocenter-5.19.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kinfocenter-5.19.1/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 pushd clr-build
 %make_install
 popd
