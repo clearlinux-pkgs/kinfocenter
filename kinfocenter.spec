@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.20.0
-Release  : 43
-URL      : https://download.kde.org/stable/plasma/5.20.0/kinfocenter-5.20.0.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.20.0/kinfocenter-5.20.0.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.20.0/kinfocenter-5.20.0.tar.xz.sig
+Version  : 5.20.1
+Release  : 44
+URL      : https://download.kde.org/stable/plasma/5.20.1/kinfocenter-5.20.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.20.1/kinfocenter-5.20.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.20.1/kinfocenter-5.20.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.1 MIT
@@ -89,15 +89,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.20.0
-cd %{_builddir}/kinfocenter-5.20.0
+%setup -q -n kinfocenter-5.20.1
+cd %{_builddir}/kinfocenter-5.20.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1602705870
+export SOURCE_DATE_EPOCH=1603208746
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -113,17 +113,17 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1602705870
+export SOURCE_DATE_EPOCH=1603208746
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
-cp %{_builddir}/kinfocenter-5.20.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/kinfocenter-5.20.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kinfocenter/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kinfocenter-5.20.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kinfocenter-5.20.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/kinfocenter-5.20.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kinfocenter-5.20.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kinfocenter-5.20.0/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kinfocenter/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
-cp %{_builddir}/kinfocenter-5.20.0/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
+cp %{_builddir}/kinfocenter-5.20.1/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/kinfocenter-5.20.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kinfocenter/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kinfocenter-5.20.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kinfocenter-5.20.1/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/kinfocenter-5.20.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kinfocenter-5.20.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kinfocenter-5.20.1/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kinfocenter/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+cp %{_builddir}/kinfocenter-5.20.1/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 pushd clr-build
 %make_install
 popd
