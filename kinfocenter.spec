@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.20.4
-Release  : 47
-URL      : https://download.kde.org/stable/plasma/5.20.4/kinfocenter-5.20.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.20.4/kinfocenter-5.20.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.20.4/kinfocenter-5.20.4.tar.xz.sig
+Version  : 5.20.5
+Release  : 48
+URL      : https://download.kde.org/stable/plasma/5.20.5/kinfocenter-5.20.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.20.5/kinfocenter-5.20.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.20.5/kinfocenter-5.20.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GPL-2.0 GPL-3.0 LGPL-2.1 MIT
+License  : GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1 MIT
 Requires: kinfocenter-bin = %{version}-%{release}
 Requires: kinfocenter-data = %{version}-%{release}
 Requires: kinfocenter-lib = %{version}-%{release}
@@ -89,15 +89,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.20.4
-cd %{_builddir}/kinfocenter-5.20.4
+%setup -q -n kinfocenter-5.20.5
+cd %{_builddir}/kinfocenter-5.20.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1606839013
+export SOURCE_DATE_EPOCH=1609866758
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -113,17 +113,18 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1606839013
+export SOURCE_DATE_EPOCH=1609866758
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
-cp %{_builddir}/kinfocenter-5.20.4/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/kinfocenter-5.20.4/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kinfocenter/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kinfocenter-5.20.4/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kinfocenter-5.20.4/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/kinfocenter-5.20.4/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kinfocenter-5.20.4/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kinfocenter-5.20.4/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kinfocenter/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
-cp %{_builddir}/kinfocenter-5.20.4/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
+cp %{_builddir}/kinfocenter-5.20.5/LICENSES/GFDL-1.2-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/kinfocenter-5.20.5/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/kinfocenter-5.20.5/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kinfocenter/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kinfocenter-5.20.5/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kinfocenter-5.20.5/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/kinfocenter-5.20.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kinfocenter-5.20.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kinfocenter-5.20.5/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kinfocenter/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+cp %{_builddir}/kinfocenter-5.20.5/Modules/about-distro/COPYING %{buildroot}/usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 pushd clr-build
 %make_install
 popd
@@ -240,6 +241,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/package-licenses/kinfocenter/2a638514c87c4923c0570c55822620fad56f2a33
 /usr/share/package-licenses/kinfocenter/3c3d7573e137d48253731c975ecf90d74cfa9efe
 /usr/share/package-licenses/kinfocenter/6091db0aead0d90182b93d3c0d09ba93d188f907
+/usr/share/package-licenses/kinfocenter/7697008f58568e61e7598e796eafc2a997503fde
 /usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
 /usr/share/package-licenses/kinfocenter/842745cb706f8f2126506f544492f7a80dbe29b3
 /usr/share/package-licenses/kinfocenter/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
