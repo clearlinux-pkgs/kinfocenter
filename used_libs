@@ -18,3 +18,4 @@ libX11.so.6
 libc.so.6
 libpci.so.3
 libstdc++.so.6
+libusb-1.0.so.0
