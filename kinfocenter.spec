@@ -6,18 +6,19 @@
 #
 Name     : kinfocenter
 Version  : 5.24.2
-Release  : 63
+Release  : 64
 URL      : https://download.kde.org/stable/plasma/5.24.2/kinfocenter-5.24.2.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.24.2/kinfocenter-5.24.2.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.24.2/kinfocenter-5.24.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-2-Clause BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
+License  : BSD-2-Clause BSD-3-Clause CC0-1.0 FSFAP GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
 Requires: kinfocenter-bin = %{version}-%{release}
 Requires: kinfocenter-data = %{version}-%{release}
 Requires: kinfocenter-lib = %{version}-%{release}
 Requires: kinfocenter-license = %{version}-%{release}
 Requires: kinfocenter-locales = %{version}-%{release}
+Requires: systemsettings
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
@@ -111,7 +112,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1645664657
+export SOURCE_DATE_EPOCH=1645674521
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -127,12 +128,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1645664657
+export SOURCE_DATE_EPOCH=1645674521
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp %{_builddir}/kinfocenter-5.24.2/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kinfocenter/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee
 cp %{_builddir}/kinfocenter-5.24.2/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kinfocenter/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
 cp %{_builddir}/kinfocenter-5.24.2/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kinfocenter/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
+cp %{_builddir}/kinfocenter-5.24.2/LICENSES/FSFAP.txt %{buildroot}/usr/share/package-licenses/kinfocenter/da20b47077b3106fb65720d6fef309f39043fa60
 cp %{_builddir}/kinfocenter-5.24.2/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/2a638514c87c4923c0570c55822620fad56f2a33
 cp %{_builddir}/kinfocenter-5.24.2/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kinfocenter/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 cp %{_builddir}/kinfocenter-5.24.2/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/6091db0aead0d90182b93d3c0d09ba93d188f907
@@ -274,6 +276,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275
 /usr/share/package-licenses/kinfocenter/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
 /usr/share/package-licenses/kinfocenter/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+/usr/share/package-licenses/kinfocenter/da20b47077b3106fb65720d6fef309f39043fa60
 /usr/share/package-licenses/kinfocenter/e458941548e0864907e654fa2e192844ae90fc32
 /usr/share/package-licenses/kinfocenter/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
