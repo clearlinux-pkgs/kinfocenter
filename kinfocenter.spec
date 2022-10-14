@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.25.5
-Release  : 73
-URL      : https://download.kde.org/stable/plasma/5.25.5/kinfocenter-5.25.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.25.5/kinfocenter-5.25.5.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.25.5/kinfocenter-5.25.5.tar.xz.sig
+Version  : 5.26.0
+Release  : 74
+URL      : https://download.kde.org/stable/plasma/5.26.0/kinfocenter-5.26.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.0/kinfocenter-5.26.0.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.0/kinfocenter-5.26.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-2-Clause BSD-3-Clause CC0-1.0 FSFAP GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
+License  : BSD-2-Clause BSD-3-Clause CC0-1.0 FSFAP GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
 Requires: kinfocenter-bin = %{version}-%{release}
 Requires: kinfocenter-data = %{version}-%{release}
 Requires: kinfocenter-lib = %{version}-%{release}
@@ -23,7 +23,6 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : kdoctools-dev
-BuildRequires : ki18n-dev
 BuildRequires : pciutils-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libusb-1.0)
@@ -102,15 +101,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.25.5
-cd %{_builddir}/kinfocenter-5.25.5
+%setup -q -n kinfocenter-5.26.0
+cd %{_builddir}/kinfocenter-5.26.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662501411
+export SOURCE_DATE_EPOCH=1665720296
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -126,7 +125,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1662501411
+export SOURCE_DATE_EPOCH=1665720296
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kinfocenter/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
@@ -136,8 +135,6 @@ cp %{_builddir}/kinfocenter-%{version}/LICENSES/FSFAP.txt %{buildroot}/usr/share
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/2a638514c87c4923c0570c55822620fad56f2a33 || :
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kinfocenter/e712eadfab0d2357c0f50f599ef35ee0d87534cb || :
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/6091db0aead0d90182b93d3c0d09ba93d188f907 || :
-cp %{_builddir}/kinfocenter-%{version}/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kinfocenter/20079e8f79713dce80ab09774505773c926afa2a || :
-cp %{_builddir}/kinfocenter-%{version}/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/3c3d7573e137d48253731c975ecf90d74cfa9efe || :
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/kinfocenter/6f1f675aa5f6a2bbaa573b8343044b166be28399 || :
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kinfocenter/757b86330df80f81143d5916b3e92b4bcb1b1890 || :
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/7d9831e05094ce723947d729c2a46a09d6e90275 || :
@@ -158,6 +155,7 @@ popd
 %find_lang kcm_firmware_security
 %find_lang kcm_glx
 %find_lang kcm_interrupts
+%find_lang kcm_kwinsupportinfo
 %find_lang kcm_nic
 %find_lang kcm_pci
 %find_lang kcm_vulkan
@@ -198,6 +196,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/kpackage/kcms/kcm_firmware_security/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_glx/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_interrupts/contents/ui/main.qml
+/usr/share/kpackage/kcms/kcm_kwinsupportinfo/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_nic/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_pci/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_vulkan/contents/ui/main.qml
@@ -205,7 +204,6 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/kpackage/kcms/kcm_xserver/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcmsamba/contents/ui/ShareListItem.qml
 /usr/share/kpackage/kcms/kcmsamba/contents/ui/main.qml
-/usr/share/kservicetypes5/kinfocentercategory.desktop
 /usr/share/metainfo/org.kde.kinfocenter.appdata.xml
 /usr/share/polkit-1/actions/org.kde.kinfocenter.dmidecode.policy
 /usr/share/xdg/kinfocenter.menu
@@ -260,6 +258,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_firmware_security.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_glx.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_interrupts.so
+/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_kwinsupportinfo.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_nic.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_pci.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_samba.so
@@ -272,10 +271,8 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kinfocenter/20079e8f79713dce80ab09774505773c926afa2a
 /usr/share/package-licenses/kinfocenter/2a638514c87c4923c0570c55822620fad56f2a33
 /usr/share/package-licenses/kinfocenter/2fc0cc7725ba1907f2d31a14c4c705e64a49e76e
-/usr/share/package-licenses/kinfocenter/3c3d7573e137d48253731c975ecf90d74cfa9efe
 /usr/share/package-licenses/kinfocenter/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee
 /usr/share/package-licenses/kinfocenter/6091db0aead0d90182b93d3c0d09ba93d188f907
 /usr/share/package-licenses/kinfocenter/6f1f675aa5f6a2bbaa573b8343044b166be28399
@@ -288,6 +285,6 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/package-licenses/kinfocenter/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 /usr/share/package-licenses/kinfocenter/f9bb2e988a5b97ddfe98979cd3c3021017f5cbfd
 
-%files locales -f kcmsamba.lang -f kcmusb.lang -f kcm_about-distro.lang -f kcm_cpu.lang -f kcm_egl.lang -f kcm_energyinfo.lang -f kcm_firmware_security.lang -f kcm_glx.lang -f kcm_interrupts.lang -f kcm_nic.lang -f kcm_pci.lang -f kcm_vulkan.lang -f kcm_wayland.lang -f kcm_xserver.lang -f kcmdevinfo.lang
+%files locales -f kcmsamba.lang -f kcmusb.lang -f kcm_about-distro.lang -f kcm_cpu.lang -f kcm_egl.lang -f kcm_energyinfo.lang -f kcm_firmware_security.lang -f kcm_glx.lang -f kcm_interrupts.lang -f kcm_kwinsupportinfo.lang -f kcm_nic.lang -f kcm_pci.lang -f kcm_vulkan.lang -f kcm_wayland.lang -f kcm_xserver.lang -f kcmdevinfo.lang
 %defattr(-,root,root,-)
 
