@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.26.4
-Release  : 78
-URL      : https://download.kde.org/stable/plasma/5.26.4/kinfocenter-5.26.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.26.4/kinfocenter-5.26.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.26.4/kinfocenter-5.26.4.tar.xz.sig
+Version  : 5.26.5
+Release  : 79
+URL      : https://download.kde.org/stable/plasma/5.26.5/kinfocenter-5.26.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.5/kinfocenter-5.26.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.5/kinfocenter-5.26.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause CC0-1.0 FSFAP GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -25,6 +25,9 @@ BuildRequires : extra-cmake-modules-data
 BuildRequires : pciutils-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libusb-1.0)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 <!--
@@ -100,31 +103,31 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.26.4
-cd %{_builddir}/kinfocenter-5.26.4
+%setup -q -n kinfocenter-5.26.5
+cd %{_builddir}/kinfocenter-5.26.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1669816068
+export SOURCE_DATE_EPOCH=1673299064
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1669816068
+export SOURCE_DATE_EPOCH=1673299064
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kinfocenter/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
@@ -221,6 +224,8 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/doc/HTML/en/kinfocenter/index.cache.bz2
 /usr/share/doc/HTML/en/kinfocenter/index.docbook
 /usr/share/doc/HTML/en/kinfocenter/kinfocenter.png
+/usr/share/doc/HTML/es/kinfocenter/index.cache.bz2
+/usr/share/doc/HTML/es/kinfocenter/index.docbook
 /usr/share/doc/HTML/fr/kinfocenter/index.cache.bz2
 /usr/share/doc/HTML/fr/kinfocenter/index.docbook
 /usr/share/doc/HTML/id/kinfocenter/index.cache.bz2
