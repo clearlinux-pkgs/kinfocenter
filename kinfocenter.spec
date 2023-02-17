@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.26.5
-Release  : 79
-URL      : https://download.kde.org/stable/plasma/5.26.5/kinfocenter-5.26.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.26.5/kinfocenter-5.26.5.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.26.5/kinfocenter-5.26.5.tar.xz.sig
+Version  : 5.27.0
+Release  : 80
+URL      : https://download.kde.org/stable/plasma/5.27.0/kinfocenter-5.27.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.0/kinfocenter-5.27.0.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.0/kinfocenter-5.27.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause CC0-1.0 FSFAP GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -22,9 +22,11 @@ Requires: systemsettings
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
+BuildRequires : kio-dev
 BuildRequires : pciutils-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libusb-1.0)
+BuildRequires : pkgconfig(x11)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -103,15 +105,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.26.5
-cd %{_builddir}/kinfocenter-5.26.5
+%setup -q -n kinfocenter-5.27.0
+cd %{_builddir}/kinfocenter-5.27.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1673299064
+export SOURCE_DATE_EPOCH=1676673114
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -127,7 +129,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1673299064
+export SOURCE_DATE_EPOCH=1676673114
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kinfocenter/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
@@ -159,6 +161,7 @@ popd
 %find_lang kcm_interrupts
 %find_lang kcm_kwinsupportinfo
 %find_lang kcm_nic
+%find_lang kcm_opencl
 %find_lang kcm_pci
 %find_lang kcm_vulkan
 %find_lang kcm_wayland
@@ -200,6 +203,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/kpackage/kcms/kcm_interrupts/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_kwinsupportinfo/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_nic/contents/ui/main.qml
+/usr/share/kpackage/kcms/kcm_opencl/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_pci/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_vulkan/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_wayland/contents/ui/main.qml
@@ -264,6 +268,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_interrupts.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_kwinsupportinfo.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_nic.so
+/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_opencl.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_pci.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_samba.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_usb.so
@@ -289,6 +294,6 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/package-licenses/kinfocenter/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 /usr/share/package-licenses/kinfocenter/f9bb2e988a5b97ddfe98979cd3c3021017f5cbfd
 
-%files locales -f kcmsamba.lang -f kcmusb.lang -f kcm_about-distro.lang -f kcm_cpu.lang -f kcm_egl.lang -f kcm_energyinfo.lang -f kcm_firmware_security.lang -f kcm_glx.lang -f kcm_interrupts.lang -f kcm_kwinsupportinfo.lang -f kcm_nic.lang -f kcm_pci.lang -f kcm_vulkan.lang -f kcm_wayland.lang -f kcm_xserver.lang -f kcmdevinfo.lang
+%files locales -f kcmsamba.lang -f kcmusb.lang -f kcm_about-distro.lang -f kcm_cpu.lang -f kcm_egl.lang -f kcm_energyinfo.lang -f kcm_firmware_security.lang -f kcm_glx.lang -f kcm_interrupts.lang -f kcm_kwinsupportinfo.lang -f kcm_nic.lang -f kcm_opencl.lang -f kcm_pci.lang -f kcm_vulkan.lang -f kcm_wayland.lang -f kcm_xserver.lang -f kcmdevinfo.lang
 %defattr(-,root,root,-)
 
