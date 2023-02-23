@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.27.0
-Release  : 81
-URL      : https://download.kde.org/stable/plasma/5.27.0/kinfocenter-5.27.0.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.0/kinfocenter-5.27.0.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.0/kinfocenter-5.27.0.tar.xz.sig
+Version  : 5.27.1
+Release  : 82
+URL      : https://download.kde.org/stable/plasma/5.27.1/kinfocenter-5.27.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.1/kinfocenter-5.27.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.1/kinfocenter-5.27.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause CC0-1.0 FSFAP GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -22,11 +22,9 @@ Requires: systemsettings
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
-BuildRequires : kio-dev
 BuildRequires : pciutils-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libusb-1.0)
-BuildRequires : pkgconfig(x11)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -105,15 +103,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.27.0
-cd %{_builddir}/kinfocenter-5.27.0
+%setup -q -n kinfocenter-5.27.1
+cd %{_builddir}/kinfocenter-5.27.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1676846068
+export SOURCE_DATE_EPOCH=1677184137
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -129,7 +127,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1676846068
+export SOURCE_DATE_EPOCH=1677184137
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kinfocenter/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
