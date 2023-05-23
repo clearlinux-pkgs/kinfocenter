@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.27.4
-Release  : 85
-URL      : https://download.kde.org/stable/plasma/5.27.4/kinfocenter-5.27.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.4/kinfocenter-5.27.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.4/kinfocenter-5.27.4.tar.xz.sig
+Version  : 5.27.5
+Release  : 86
+URL      : https://download.kde.org/stable/plasma/5.27.5/kinfocenter-5.27.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.5/kinfocenter-5.27.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.5/kinfocenter-5.27.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause CC0-1.0 FSFAP GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -104,31 +104,48 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.27.4
-cd %{_builddir}/kinfocenter-5.27.4
+%setup -q -n kinfocenter-5.27.5
+cd %{_builddir}/kinfocenter-5.27.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680713171
+export SOURCE_DATE_EPOCH=1684800827
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1680713171
+export SOURCE_DATE_EPOCH=1684800827
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kinfocenter/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
@@ -146,6 +163,9 @@ cp %{_builddir}/kinfocenter-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kinfocenter/e458941548e0864907e654fa2e192844ae90fc32 || :
 cp %{_builddir}/kinfocenter-%{version}/Modules/firmware_security/kcm_firmware_security.json.license %{buildroot}/usr/share/package-licenses/kinfocenter/f9bb2e988a5b97ddfe98979cd3c3021017f5cbfd || :
 cp %{_builddir}/kinfocenter-%{version}/logo.png.license %{buildroot}/usr/share/package-licenses/kinfocenter/2fc0cc7725ba1907f2d31a14c4c705e64a49e76e || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -169,9 +189,11 @@ popd
 ## install_append content
 mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 ## install_append end
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
+/V3/usr/lib64/libexec/kauth/kinfocenter-dmidecode-helper
 /usr/lib64/libexec/kauth/kinfocenter-dmidecode-helper
 
 %files bin
@@ -215,6 +237,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKInfoCenterInternal.so
 /usr/lib64/libKInfoCenterInternal.so
 
 %files doc
@@ -257,6 +280,23 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kcm_about-distro.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kcm_energyinfo.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_cpu.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_devinfo.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_egl.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_firmware_security.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_glx.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_interrupts.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_kwinsupportinfo.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_nic.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_opencl.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_pci.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_samba.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_usb.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_vulkan.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_wayland.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_xserver.so
 /usr/lib64/qt5/plugins/plasma/kcms/kcm_about-distro.so
 /usr/lib64/qt5/plugins/plasma/kcms/kcm_energyinfo.so
 /usr/lib64/qt5/plugins/plasma/kcms/kinfocenter/kcm_cpu.so
