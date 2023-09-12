@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kinfocenter
-Version  : 5.27.7
-Release  : 89
-URL      : https://download.kde.org/stable/plasma/5.27.7/kinfocenter-5.27.7.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.7/kinfocenter-5.27.7.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.7/kinfocenter-5.27.7.tar.xz.sig
+Version  : 5.27.8
+Release  : 90
+URL      : https://download.kde.org/stable/plasma/5.27.8/kinfocenter-5.27.8.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.8/kinfocenter-5.27.8.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.8/kinfocenter-5.27.8.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause CC0-1.0 FSFAP GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -104,15 +104,15 @@ locales components for the kinfocenter package.
 
 
 %prep
-%setup -q -n kinfocenter-5.27.7
-cd %{_builddir}/kinfocenter-5.27.7
+%setup -q -n kinfocenter-5.27.8
+cd %{_builddir}/kinfocenter-5.27.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1690906902
+export SOURCE_DATE_EPOCH=1694539096
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -145,7 +145,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1690906902
+export SOURCE_DATE_EPOCH=1694539096
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kinfocenter/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
