@@ -9,7 +9,7 @@
 #
 Name     : kinfocenter
 Version  : 6.0.2
-Release  : 97
+Release  : 98
 URL      : https://download.kde.org/stable/plasma/6.0.2/kinfocenter-6.0.2.tar.xz
 Source0  : https://download.kde.org/stable/plasma/6.0.2/kinfocenter-6.0.2.tar.xz
 Source1  : https://download.kde.org/stable/plasma/6.0.2/kinfocenter-6.0.2.tar.xz.sig
@@ -29,6 +29,7 @@ BuildRequires : kconfig-dev
 BuildRequires : kcoreaddons-dev
 BuildRequires : ki18n-dev
 BuildRequires : kio-dev
+BuildRequires : kirigami-dev
 BuildRequires : kservice-dev
 BuildRequires : pciutils-dev
 BuildRequires : pkg-config
@@ -62,19 +63,6 @@ Group: Data
 
 %description data
 data components for the kinfocenter package.
-
-
-%package dev
-Summary: dev components for the kinfocenter package.
-Group: Development
-Requires: kinfocenter-lib = %{version}-%{release}
-Requires: kinfocenter-bin = %{version}-%{release}
-Requires: kinfocenter-data = %{version}-%{release}
-Provides: kinfocenter-devel = %{version}-%{release}
-Requires: kinfocenter = %{version}-%{release}
-
-%description dev
-dev components for the kinfocenter package.
 
 
 %package doc
@@ -120,7 +108,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1711121071
+export SOURCE_DATE_EPOCH=1711127471
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -181,7 +169,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1711121071
+export SOURCE_DATE_EPOCH=1711127471
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kinfocenter
 cp %{_builddir}/kinfocenter-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kinfocenter/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee || :
@@ -249,11 +237,6 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /usr/share/polkit-1/actions/org.kde.kinfocenter.dmidecode.policy
 /usr/share/xdg/kinfocenter.menu
 
-%files dev
-%defattr(-,root,root,-)
-/V3/usr/lib64/libKInfoCenterInternal.so
-/usr/lib64/libKInfoCenterInternal.so
-
 %files doc
 %defattr(0644,root,root,0755)
 /usr/share/doc/HTML/ca/kinfocenter/index.cache.bz2
@@ -294,6 +277,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKInfoCenterInternal.so
 /V3/usr/lib64/qt6/plugins/plasma/kcms/kcm_about-distro.so
 /V3/usr/lib64/qt6/plugins/plasma/kcms/kcm_energyinfo.so
 /V3/usr/lib64/qt6/plugins/plasma/kcms/kinfocenter/kcm_cpu.so
@@ -311,6 +295,7 @@ mv %{buildroot}/etc/xdg/* %{buildroot}/usr/share/xdg/
 /V3/usr/lib64/qt6/plugins/plasma/kcms/kinfocenter/kcm_vulkan.so
 /V3/usr/lib64/qt6/plugins/plasma/kcms/kinfocenter/kcm_wayland.so
 /V3/usr/lib64/qt6/plugins/plasma/kcms/kinfocenter/kcm_xserver.so
+/usr/lib64/libKInfoCenterInternal.so
 /usr/lib64/qt6/plugins/plasma/kcms/kcm_about-distro.so
 /usr/lib64/qt6/plugins/plasma/kcms/kcm_energyinfo.so
 /usr/lib64/qt6/plugins/plasma/kcms/kinfocenter/kcm_cpu.so
