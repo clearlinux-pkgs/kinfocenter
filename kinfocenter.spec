@@ -9,7 +9,7 @@
 #
 Name     : kinfocenter
 Version  : 6.1.4
-Release  : 111
+Release  : 112
 URL      : https://download.kde.org/stable/plasma/6.1.4/kinfocenter-6.1.4.tar.xz
 Source0  : https://download.kde.org/stable/plasma/6.1.4/kinfocenter-6.1.4.tar.xz
 Source1  : https://download.kde.org/stable/plasma/6.1.4/kinfocenter-6.1.4.tar.xz.sig
