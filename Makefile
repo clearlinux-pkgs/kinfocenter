@@ -1,5 +1,5 @@
 PKG_NAME := kinfocenter
-URL = https://download.kde.org/stable/plasma/6.1.4/kinfocenter-6.1.4.tar.xz
+URL = https://download.kde.org/stable/plasma/6.1.5/kinfocenter-6.1.5.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
